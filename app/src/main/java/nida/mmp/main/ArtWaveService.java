@@ -346,7 +346,7 @@ public class ArtWaveService extends Service {
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
                                     long id) {
                 String itemData = ((TextView) itemClicked).getText().toString();
-                methodSelected = NidaCommon.parseMethodName(itemData);
+                methodSelected = NidaCommon.getMethodName(itemData);
                 dialogActionMethod();
             }
         });
@@ -422,8 +422,8 @@ public class ArtWaveService extends Service {
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
                                     long id) {
                 String itemData = ((TextView) itemClicked).getText().toString();
-                fieldsSelected = itemData;
-                dialogActionMethod();
+                fieldsSelected = NidaCommon.getFieldName(itemData);
+                dialogActionField();
             }
         });
         typeFieldsName.addTextChangedListener(new TextWatcher()
@@ -493,11 +493,59 @@ public class ArtWaveService extends Service {
             }
         });
 
+
+
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
         dialog.show();
     }
+
+    public void dialogActionField(){
+        Context dialogContext = this;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose action");
+        String[] action = {"Get value", "Set value"};
+        builder.setItems(action, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        try {
+                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(dialogContext);
+                            alertDialog.setTitle("Get value");
+
+                            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.MATCH_PARENT);
+
+                            EditText fieldData = new EditText(dialogContext);
+
+                            fieldData.setLayoutParams(lp);
+
+                            fieldData.setText(String.valueOf(NidaCommon.getFieldValue(fieldsSelected, classSelected)));
+
+                            alertDialog.setView(fieldData);
+
+                            AlertDialog d = alertDialog.create();
+                            d.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+                            d.show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                }
+            }
+        });
+
+
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+        dialog.show();
+    }
+
     public int calculatePx(int dp){
         Resources r = getResources();
          return Math.round(TypedValue.applyDimension(

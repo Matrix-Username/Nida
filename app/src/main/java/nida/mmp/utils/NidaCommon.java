@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -47,21 +48,27 @@ public class NidaCommon {
         return arrayList;
     }
 
-    public static String parseMethodName(String fullName){
+    public static String getMethodName(String fullName){
         StringBuffer stringBuffer = new StringBuffer(fullName.substring(0, fullName.indexOf("(")));
         stringBuffer.reverse();
         StringBuffer stringBuffer1 = new StringBuffer(stringBuffer.toString().substring(0, stringBuffer.toString().indexOf(" ")));
         stringBuffer1.reverse();
         return stringBuffer1.toString();
     }
-    public void test(){
-        System.out.println("TEST");
+
+    public static String getFieldName(String fullName){
+        return fullName.substring(fullName.lastIndexOf(" ") + 1);
     }
 
     public static Object getFieldValue(String fieldName, String className) {
+        NidaLog.log("Get field " + fieldName + " class " + className);
+
         Object value = null;
         try {
-            value = (Object) Class.forName(className).getDeclaredField(fieldName).get(mainContext);
+            Class classObj = Class.forName(className);
+            Field fieldObj = classObj.getDeclaredField(fieldName);
+            fieldObj.setAccessible(true);
+            value = (Object) fieldObj.get(mainContext);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (NoSuchFieldException e) {
