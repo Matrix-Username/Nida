@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\artwave_main.xml",
+        "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\layout\\artwave_main.xml"
+    },
+    {
+        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\searchclassview.xml",
+        "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\layout\\searchclassview.xml"
+    },
+    {
+        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main2.xml",
+        "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\layout\\activity_main2.xml"
+    },
+    {
+        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_nida_test.xml",
+        "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\layout\\activity_nida_test.xml"
+    }
+]

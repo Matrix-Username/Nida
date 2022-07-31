@@ -1,0 +1,4 @@
+#Sun Jul 31 21:32:57 MSK 2022
+base.0=D\:\\ASProjects\\Nida\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

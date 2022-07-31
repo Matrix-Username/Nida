@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@android:style/Widget.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nida"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/selectedClassName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please select class name"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:translationX="5dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/buttonClass"
+            android:layout_width="77dp"
+            android:layout_height="35dp"
+            android:text="Class"
+            android:textSize="8sp" />
+        <Button
+            android:id="@+id/buttonMethods"
+            android:layout_width="77dp"
+            android:layout_height="35dp"
+            android:text="Methods"
+            android:textSize="8sp" />
+        <Button
+            android:id="@+id/buttonFields"
+            android:layout_width="77dp"
+            android:layout_height="35dp"
+            android:text="Fields"
+            android:textSize="8sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

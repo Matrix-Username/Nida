@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/typePackageName"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:ems="10"
+            android:hint="Type package name"
+            android:inputType="textPersonName"
+            android:textColorHint="#FFFFFF"
+            android:textSize="12sp" />
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+</LinearLayout>

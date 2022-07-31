@@ -1,0 +1,2 @@
+matrix/e/e/e/e/e/artwavetester/test/BuildConfig.java
+ matrix.e.e.e.e.e.artwavetester.test.BuildConfig
