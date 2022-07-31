@@ -28,6 +28,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.os.HandlerCompat;
+
 import nida.mmp.R;
 import nida.mmp.utils.NidaCommon;
 import nida.mmp.utils.NidaLog;
@@ -468,10 +470,8 @@ public class ArtWaveService extends Service {
                                     LinearLayout.LayoutParams.MATCH_PARENT);
 
                             EditText inputCount = new EditText(dialogContext);
-                            EditText inputArgs = new EditText(dialogContext);
 
                             inputCount.setLayoutParams(lp);
-                            inputArgs.setLayoutParams(lp);
 
 
                             alertDialog.setView(inputCount);
@@ -510,30 +510,62 @@ public class ArtWaveService extends Service {
         builder.setItems(action, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case 0:
-                        try {
-                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(dialogContext);
-                            alertDialog.setTitle("Get value");
 
-                            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.MATCH_PARENT);
+                //Use switch = bugs
+                if(which == 1){
+                    try {
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(dialogContext);
+                        alertDialog.setTitle("Set value");
 
-                            EditText fieldData = new EditText(dialogContext);
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT);
 
-                            fieldData.setLayoutParams(lp);
+                        EditText fieldSetData = new EditText(dialogContext);
 
-                            fieldData.setText(String.valueOf(NidaCommon.getFieldValue(fieldsSelected, classSelected)));
+                        fieldSetData.setLayoutParams(lp);
 
-                            alertDialog.setView(fieldData);
+                        alertDialog.setView(fieldSetData);
 
-                            AlertDialog d = alertDialog.create();
-                            d.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
-                            d.show();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        alertDialog.setPositiveButton("Set value!",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        String data = fieldSetData.getText().toString();
+                                        NidaCommon.setFieldValue(fieldsSelected, classSelected, data);
+                                    }
+                                });
+
+                        AlertDialog d = alertDialog.create();
+                        d.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+                        d.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                if(which == 0){
+
+                    try {
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(dialogContext);
+                        alertDialog.setTitle("Get value");
+
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT);
+
+                        EditText fieldData = new EditText(dialogContext);
+
+                        fieldData.setLayoutParams(lp);
+
+                        fieldData.setText(String.valueOf(NidaCommon.getFieldValue(fieldsSelected, classSelected)));
+
+                        alertDialog.setView(fieldData);
+
+                        AlertDialog d = alertDialog.create();
+                        d.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+                        d.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

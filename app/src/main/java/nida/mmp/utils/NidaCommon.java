@@ -79,6 +79,25 @@ public class NidaCommon {
         return value;
     }
 
+    public static void setFieldValue(String fieldName, String className, Object value) {
+        NidaLog.log("Set field " + fieldName + " class " + className);
+
+        try {
+            Class classObj = Class.forName(className);
+            Field fieldObj = classObj.getDeclaredField(fieldName);
+            fieldObj.setAccessible(true);
+            fieldObj.set(classObj.newInstance(), value);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList<String> getFields(String className) {
         ArrayList<String> arrayList = new ArrayList<>();
         try {
