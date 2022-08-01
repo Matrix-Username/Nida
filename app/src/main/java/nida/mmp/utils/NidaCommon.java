@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.regex.Matcher;
@@ -98,10 +99,12 @@ public class NidaCommon {
         NidaLog.log("Set field " + fieldName + " class " + className);
 
         try {
+
+
             Class classObj = Class.forName(className);
             Field fieldObj = classObj.getDeclaredField(fieldName);
-            fieldObj.setAccessible(true);
-            fieldObj.set(classObj.newInstance(), value);
+            setFinalStatic(fieldObj, value);
+
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (NoSuchFieldException e) {
@@ -110,8 +113,24 @@ public class NidaCommon {
             e.printStackTrace();
         } catch (InstantiationException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+    /**
+     * Set field final access flag
+     */
+    public static void setFinalStatic(Field field, Object newValue) throws Exception {
+        field.setAccessible(true);
+
+        Field modifiersField = Field.class.getDeclaredField("accessFlags");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+
+        field.set(null, newValue);
+    }
+
 
     /**
      * Get fields array in class
@@ -313,5 +332,4 @@ public class NidaCommon {
         builder.create();
         builder.show();
     }
-
 }
