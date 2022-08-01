@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -110,6 +113,9 @@ public class NidaCommon {
         }
     }
 
+    /**
+     * Get fields array in class
+     */
     public static ArrayList<String> getFields(String className) {
         ArrayList<String> arrayList = new ArrayList<>();
         try {
@@ -123,12 +129,18 @@ public class NidaCommon {
         return arrayList;
     }
 
+    /**
+     * Used for method invoke certain number time
+     */
     public static void nFor(int n, String funClass, String methodName, Object... args) {
         for (int i = 0; i < n; i++) {
             invokeMethod(funClass, methodName, args);
         }
     }
 
+    /**
+     * Invoke method in class
+     */
     public static void invokeMethod(String funClass, String methodName, Object... args){
         try{
             //Get class by name
@@ -139,9 +151,14 @@ public class NidaCommon {
 
             //Invoking
             Method m = c.getDeclaredMethod(methodName, null);
-            m.invoke(o, args);
+            Object output = m.invoke(o, args);
+
+            methodOutputDialog(mainContext, String.valueOf(output));
+
+
 
             NidaLog.log("Invoked method " + methodName + "in class " + funClass);
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -153,6 +170,33 @@ public class NidaCommon {
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void Test(){
+        System.out.println("Test");
+    }
+
+    /**
+     * Show dialog with method output data
+     */
+    public static void methodOutputDialog(Context contextDialog, String outputStr){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(contextDialog);
+        alertDialog.setTitle("Output:");
+
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+
+        EditText fieldSetData = new EditText(contextDialog);
+        fieldSetData.setText(outputStr);
+
+        fieldSetData.setLayoutParams(lp);
+
+        alertDialog.setView(fieldSetData);
+
+        AlertDialog d = alertDialog.create();
+        d.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+        d.show();
     }
 
     /**
