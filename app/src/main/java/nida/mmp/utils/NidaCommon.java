@@ -16,6 +16,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import dalvik.system.DexFile;
 import nida.mmp.main.ArtWaveService;
@@ -51,6 +53,19 @@ public class NidaCommon {
         StringBuffer stringBuffer1 = new StringBuffer(stringBuffer.toString().substring(0, stringBuffer.toString().indexOf(" ")));
         stringBuffer1.reverse();
         return stringBuffer1.toString();
+    }
+
+    /**
+     * Get method type
+     */
+    public static String getMethodType(String fullMethodStr){
+        Pattern p = Pattern.compile("(\\w+)\\W+" + getMethodName(fullMethodStr) + "\\W+(\\w+)");
+
+        Matcher m = p.matcher(fullMethodStr.replace(")", "TEST"));
+        if (m.find())
+            return m.group(1);
+
+        return null;
     }
 
     public static String getFieldName(String fullName){
