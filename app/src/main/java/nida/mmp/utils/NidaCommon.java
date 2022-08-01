@@ -3,21 +3,18 @@ package nida.mmp.utils;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 
 import dalvik.system.DexFile;
@@ -39,7 +36,7 @@ public class NidaCommon {
             Method[] methods = thisClass.getDeclaredMethods();
 
             for (int i = 0; i < methods.length; i++) {
-               arrayList.add(wrappString(methods[i].toString(), className));
+               arrayList.add(wrapString(methods[i].toString(), className));
             }
         } catch (Throwable e) {
             System.err.println(e);
@@ -103,7 +100,7 @@ public class NidaCommon {
         try {
             Field[] fields = Class.forName(className).getDeclaredFields();
             for (int i = 0; i < fields.length; i++) {
-                arrayList.add(wrappString(fields[i].toString(), className));
+                arrayList.add(wrapString(fields[i].toString(), className));
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -143,7 +140,9 @@ public class NidaCommon {
         }
     }
 
-    //Start activity by name
+    /**
+     * Start activity by name
+     */
     public static void startActivityByName(String className) {
         try {
             Intent artWaveIntent = new Intent(mainContext, Class.forName(className));
@@ -153,29 +152,16 @@ public class NidaCommon {
         }
     }
 
-    //Wrap string
-    public static String wrappString(String s, String className) {
-        String wrappedString = s.replace(className, "").replace(", ", "\n").replace(" .", " ").replace("[", "").replace("]", "").replace("java.lang.", "");
-        return wrappedString;
+    /**
+     * Wrap string
+     */
+    public static String wrapString(String s, String className) {
+        return s.replace(className, "").replace(", ", "\n").replace(" .", " ").replace("[", "").replace("]", "").replace("java.lang.", "");
     }
 
-    //Reading file from assets folder by name
-    public static String readAssetFile(String name) {
-        String tContents = "";
-        try {
-            InputStream stream = mainContext.getAssets().open(name);
-            int size = stream.available();
-            byte[] buffer = new byte[size];
-            stream.read(buffer);
-            stream.close();
-            tContents = new String(buffer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return tContents;
-    }
-
-    //Get all package classes
+    /**
+     * Get all classes of package
+     */
     public static String[] getClassesOfPackage(String packageName) {
         ArrayList<String> classes = new ArrayList<String>();
         try {
@@ -194,7 +180,9 @@ public class NidaCommon {
         return classes.toArray(new String[classes.size()]);
     }
 
-    //Check and run main logic service
+    /**
+     * Check Nida initialization & run main service
+     */
     public static void startMyLogic(){
 
         if(mainContext == null){
@@ -212,7 +200,9 @@ public class NidaCommon {
         }
     }
 
-    //Check is Main Service running
+    /**
+     * Check is Main Service running
+     */
     private static boolean isMyServiceRunning() {
         ActivityManager manager = (ActivityManager) mainContext.getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
@@ -223,7 +213,9 @@ public class NidaCommon {
         return false;
     }
 
-    //Check is overlay window permisson allowed
+    /**
+     * Check is overlay window permission allowed
+     */
     private static boolean checkOverlayDisplayPermission() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(mainContext)) {
@@ -236,7 +228,17 @@ public class NidaCommon {
         }
     }
 
-    //Create dialog with request overlay window
+    /**
+     * Getting log file path
+     */
+    public static String getLogFilePath(){
+        ContextWrapper contextWrapper = new ContextWrapper(mainContext);
+        return contextWrapper.getFilesDir().getAbsolutePath() + "/nida_log.txt";
+    }
+
+    /**
+     * Create dialog with request overlay window
+     */
     private static void requestOverlayDisplayPermission() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mainContext);
         builder.setCancelable(false);

@@ -14,6 +14,7 @@ import android.os.IBinder;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -28,7 +29,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.os.HandlerCompat;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import nida.mmp.R;
 import nida.mmp.utils.NidaCommon;
@@ -41,21 +47,33 @@ public class ArtWaveService extends Service {
     String methodSelected;
     String fieldsSelected;
     String viewTag;
+
     LinearLayout mainContainer;
     LinearLayout searchClassContainer;
     LinearLayout methodsContainer;
     LinearLayout fieldsContainer;
+    LinearLayout logsContainer;
+
     EditText typePackageName;
     EditText typeMethodsName;
     EditText typeFieldsName;
+    EditText typeLogName;
+
     ListView listView;
     ListView listMethods;
     ListView listFields;
+    ListView listLogs;
+
     TextView selectedClassName;
+
     Button buttonClass;
     Button buttonMethods;
     Button buttonFields;
+    Button buttonLogs;
+
     WindowManager wm;
+
+    ArrayList<String> logs = new ArrayList<String>();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -74,6 +92,8 @@ public class ArtWaveService extends Service {
         viewTag = "classSearch";
 
         NidaLog.log("Artwave service started");
+
+        captureLogs();
 
         //Initialize floating window
         wm = (WindowManager) getSystemService(WINDOW_SERVICE);
@@ -120,11 +140,22 @@ public class ArtWaveService extends Service {
             }
         });
 
+        buttonLogs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainContainer.removeView(getContainerView(viewTag));
+                mainContainer.addView(logsView());
+                viewTag = "logs";
+            }
+        });
+
 
     }
 
     private LinearLayout getContainerView(String tag){
         switch (tag){
+            case ("logs"):
+                return logsContainer;
             case ("fields"):
                 return fieldsContainer;
             case ("methods"):
@@ -191,13 +222,14 @@ public class ArtWaveService extends Service {
         );
         linearLayout_360.setLayoutParams(layout_957);
 
-        buttonClass = new Button(this);
-        buttonClass.setText("Class");
-        buttonClass.setTextSize(8);
         LinearLayout.LayoutParams layout_12 = new LinearLayout.LayoutParams(
                 calculatePx(77),
                 calculatePx(35)
         );
+
+        buttonClass = new Button(this);
+        buttonClass.setText("Class");
+        buttonClass.setTextSize(8);
         buttonClass.setLayoutParams(layout_12);
         linearLayout_360.addView(buttonClass);
 
@@ -212,6 +244,13 @@ public class ArtWaveService extends Service {
         buttonFields.setTextSize(8);
         buttonFields.setLayoutParams(layout_12);
         linearLayout_360.addView(buttonFields);
+
+        buttonLogs = new Button(this);
+        buttonLogs.setText("Logs");
+        buttonLogs.setTextSize(8);
+        buttonLogs.setLayoutParams(layout_12);
+        linearLayout_360.addView(buttonLogs);
+
         mainContainer.addView(linearLayout_360);
 
         return mainContainer;
@@ -287,7 +326,7 @@ public class ArtWaveService extends Service {
                         selectedClassName.setText(classSelected);
                         for (String f :
                                 NidaCommon.getMethods(classSelected)) {
-                            System.out.println(NidaCommon.wrappString(f, classSelected));
+                            System.out.println(NidaCommon.wrapString(f, classSelected));
                         }
                         //System.out.println(libCommon.getMethods(classSelected).get(0));
                     }
@@ -449,6 +488,81 @@ public class ArtWaveService extends Service {
         return fieldsContainer;
     }
 
+    private View logsView(){
+
+        logsContainer = new LinearLayout(this);
+        logsContainer.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams layout_293 = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+
+        logsContainer.setLayoutParams(layout_293);
+
+        typeLogName = new EditText(this);
+        typeLogName.setEms(10);
+        typeLogName.setHint("Type log");
+        typeLogName.setRawInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
+        typeLogName.setHintTextColor(Color.parseColor("#FFFFFF"));
+        typeLogName.setTextColor(Color.WHITE);
+        typeLogName.setTextSize(12);
+        LinearLayout.LayoutParams layout_391 = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                calculatePx(34)
+        );
+        typeLogName.setLayoutParams(layout_391);
+        logsContainer.addView(typeLogName);
+
+        listLogs = new ListView(this);
+        LinearLayout.LayoutParams layout_405 = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+        listLogs.setLayoutParams(layout_405);
+        logsContainer.addView(listLogs);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_list_item_1, logs){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                View view = super.getView(position, convertView, parent);
+                TextView text = (TextView) view.findViewById(android.R.id.text1);
+                text.setTextColor(Color.WHITE);
+                text.setTextSize(10);
+
+                return view;
+            }
+        };
+
+        listLogs.setAdapter(adapter);
+        listLogs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
+                                    long id) {
+
+            }
+        });
+        typeLogName.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable mEdit)
+            {
+
+            }
+        });
+        return logsContainer;
+    }
+
     public void dialogActionMethod(){
         Context dialogContext = this;
 
@@ -458,37 +572,36 @@ public class ArtWaveService extends Service {
         builder.setItems(action, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case 0:
-                        try {
-                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(dialogContext);
-                            alertDialog.setTitle("Invoke settings");
-                            alertDialog.setMessage("Set invoke count (if needed, default = 1)");
+                if (which == 0) {
+                    try {
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(dialogContext);
+                        alertDialog.setTitle("Invoke settings");
+                        alertDialog.setMessage("Set invoke count (if needed, default = 1)");
 
-                            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.MATCH_PARENT);
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT);
 
-                            EditText inputCount = new EditText(dialogContext);
+                        EditText inputCount = new EditText(dialogContext);
 
-                            inputCount.setLayoutParams(lp);
+                        inputCount.setLayoutParams(lp);
 
 
-                            alertDialog.setView(inputCount);
+                        alertDialog.setView(inputCount);
 
-                            alertDialog.setPositiveButton("Invoke!",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            String nfor = inputCount.getText().toString();
-                                            NidaCommon.nFor(Integer.parseInt(nfor), classSelected, methodSelected, null);
-                                        }
-                                    });
-                            AlertDialog d = alertDialog.create();
-                            d.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
-                            d.show();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        alertDialog.setPositiveButton("Invoke!",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        String nfor = inputCount.getText().toString();
+                                        NidaCommon.nFor(Integer.parseInt(nfor), classSelected, methodSelected, null);
+                                    }
+                                });
+                        AlertDialog d = alertDialog.create();
+                        d.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+                        d.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -576,6 +689,44 @@ public class ArtWaveService extends Service {
         AlertDialog dialog = builder.create();
         dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
         dialog.show();
+    }
+
+    public void captureLogs(){
+        NidaLog.log("Log capture started");
+
+        Timer t = new Timer();
+        t.schedule(new TimerTask()
+        {
+            public void run()
+            {
+                try
+                {
+                    try{
+                        Runtime.getRuntime().exec("logcat -c").waitFor();
+                        Process process = Runtime.getRuntime().exec("logcat -v long *:*");
+                        BufferedReader reader =
+                                new BufferedReader(new InputStreamReader(process.getInputStream()));
+                        while (true) {
+                            String nextLine = reader.readLine();
+                            logs.add(nextLine);
+                            // Process line
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    {
+
+                }
+
+                } finally
+                {
+
+                }
+            }
+        }, 0L);
+
     }
 
     public int calculatePx(int dp){
