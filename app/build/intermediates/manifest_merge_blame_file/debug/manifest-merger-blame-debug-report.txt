@@ -21,49 +21,45 @@
 13-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:7:22-65
 14
 15    <application
-15-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:8:5-28:19
+15-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:9:5-29:19
 16        android:allowBackup="true"
-16-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:9:9-35
-17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-17-->[androidx.core:core:1.5.0] C:\Users\Andrey Polkovenko\.gradle\caches\transforms-2\files-2.1\07adfc08fe16d3453ab9291511ec05fe\core-1.5.0\AndroidManifest.xml:24:18-86
-18        android:debuggable="true"
-19        android:icon="@mipmap/ic_launcher"
-19-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:10:9-43
-20        android:label="@string/app_name"
-20-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:11:9-41
-21        android:roundIcon="@mipmap/ic_launcher_round"
-21-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:12:9-54
-22        android:supportsRtl="true"
-22-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:13:9-35
-23        android:testOnly="true"
-24        android:theme="@style/Theme.ArtWaveTester" >
-24-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:14:9-51
-25        <activity
-25-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:15:9-23:20
-26            android:name="nida.mmp.test.TestActivity"
-26-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:16:13-54
-27            android:exported="true" >
-27-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:17:13-36
-28            <intent-filter>
-28-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:18:13-22:29
-29                <action android:name="android.intent.action.MAIN" />
-29-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:19:17-69
-29-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:19:25-66
-30
-31                <category android:name="android.intent.category.LAUNCHER" />
-31-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:21:17-77
-31-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:21:27-74
-32            </intent-filter>
-33        </activity>
-34
-35        <service
-35-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:24:9-27:39
-36            android:name="nida.mmp.main.ArtWaveService"
-36-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:25:13-56
-37            android:enabled="true"
-37-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:26:13-35
-38            android:exported="true" />
-38-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:27:13-36
-39    </application>
-40
-41</manifest>
+16-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:10:9-35
+17        android:debuggable="true"
+18        android:icon="@mipmap/ic_launcher"
+18-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:11:9-43
+19        android:label="@string/app_name"
+19-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:12:9-41
+20        android:roundIcon="@mipmap/ic_launcher_round"
+20-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:13:9-54
+21        android:supportsRtl="true"
+21-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:14:9-35
+22        android:testOnly="true" >
+23        <activity
+23-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:15:9-23:20
+24            android:name="nida.mmp.main.NidaActivity"
+24-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:16:13-54
+25            android:exported="true" >
+25-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:17:13-36
+26            <intent-filter>
+26-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:18:13-22:29
+27                <action android:name="android.intent.action.MAIN" />
+27-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:19:17-69
+27-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:19:25-66
+28
+29                <category android:name="android.intent.category.LAUNCHER" />
+29-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:21:17-77
+29-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:21:27-74
+30            </intent-filter>
+31        </activity>
+32
+33        <service
+33-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:25:9-28:39
+34            android:name="nida.mmp.main.ArtWaveService"
+34-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:26:13-56
+35            android:enabled="true"
+35-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:27:13-35
+36            android:exported="true" />
+36-->D:\ASProjects\Nida\app\src\main\AndroidManifest.xml:28:13-36
+37    </application>
+38
+39</manifest>

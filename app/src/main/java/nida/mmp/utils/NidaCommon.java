@@ -28,6 +28,7 @@ import nida.mmp.main.ArtWaveService;
 
 public class NidaCommon {
     private static Context mainContext;
+    private static final String testField = "Slava Ukraine";
 
     public static void initializeLogic(Context context) {
         mainContext = context;

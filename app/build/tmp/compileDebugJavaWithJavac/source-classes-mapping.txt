@@ -1,21 +1,3 @@
-nida/mmp/databinding/SearchclassviewBinding.java
- nida.mmp.databinding.SearchclassviewBinding
-nida/mmp/databinding/ActivityMain2Binding.java
- nida.mmp.databinding.ActivityMain2Binding
-nida/mmp/databinding/ArtwaveMainBinding.java
- nida.mmp.databinding.ArtwaveMainBinding
-nida/mmp/utils/libStackTrace.java
- nida.mmp.utils.libStackTrace
-nida/mmp/databinding/ActivityNidaTestBinding.java
- nida.mmp.databinding.ActivityNidaTestBinding
-nida/mmp/databinding/ActivityMainBinding.java
- nida.mmp.databinding.ActivityMainBinding
-nida/mmp/BuildConfig.java
- nida.mmp.BuildConfig
-nida/mmp/test/TestActivity.java
- nida.mmp.test.TestActivity
-nida/mmp/utils/NidaLog.java
- nida.mmp.utils.NidaLog
 nida/mmp/main/ArtWaveService.java
  nida.mmp.main.ArtWaveService
  nida.mmp.main.ArtWaveService$1
@@ -40,6 +22,22 @@ nida/mmp/main/ArtWaveService.java
  nida.mmp.main.ArtWaveService$7
  nida.mmp.main.ArtWaveService$8
  nida.mmp.main.ArtWaveService$9
+nida/mmp/databinding/ActivityMain2Binding.java
+ nida.mmp.databinding.ActivityMain2Binding
+nida/mmp/databinding/ArtwaveMainBinding.java
+ nida.mmp.databinding.ArtwaveMainBinding
+nida/mmp/utils/libStackTrace.java
+ nida.mmp.utils.libStackTrace
+nida/mmp/utils/NidaLog.java
+ nida.mmp.utils.NidaLog
 nida/mmp/utils/NidaCommon.java
  nida.mmp.utils.NidaCommon
  nida.mmp.utils.NidaCommon$1
+nida/mmp/BuildConfig.java
+ nida.mmp.BuildConfig
+nida/mmp/main/NidaActivity.java
+ nida.mmp.main.NidaActivity
+nida/mmp/databinding/ActivityMainBinding.java
+ nida.mmp.databinding.ActivityMainBinding
+nida/mmp/databinding/SearchclassviewBinding.java
+ nida.mmp.databinding.SearchclassviewBinding

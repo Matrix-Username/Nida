@@ -268,7 +268,7 @@ public class ArtWaveService extends Service {
 
         typePackageName = new EditText(this);
         typePackageName.setEms(10);
-        typePackageName.setHint("Type package name");
+        typePackageName.setHint("Type class name");
         typePackageName.setRawInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
         typePackageName.setHintTextColor(Color.parseColor("#FFFFFF"));
         typePackageName.setTextColor(Color.WHITE);

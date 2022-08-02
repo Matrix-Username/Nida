@@ -1,15 +1,11 @@
 [
     {
-        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_launcher_background.png.flat",
-        "source": "D:\\ASProjects\\Nida\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_launcher_background.png"
-    },
-    {
         "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
         "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\navigation_nav_graph.xml.flat",
-        "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\navigation\\nav_graph.xml"
+        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_launcher_background.png.flat",
+        "source": "D:\\ASProjects\\Nida\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_launcher_background.png"
     },
     {
         "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
@@ -24,28 +20,24 @@
         "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\layout\\artwave_main.xml"
     },
     {
-        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
-    },
-    {
         "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
         "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
         "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
-    },
-    {
         "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\layout_searchclassview.xml.flat",
         "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\layout\\searchclassview.xml"
     },
     {
-        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\navigation_nav_graph2.xml.flat",
-        "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\navigation\\nav_graph2.xml"
+        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
         "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
@@ -64,20 +56,16 @@
         "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher_background.png.flat",
-        "source": "D:\\ASProjects\\Nida\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_launcher_background.png"
-    },
-    {
         "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
         "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher_background.png.flat",
-        "source": "D:\\ASProjects\\Nida\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_launcher_background.png"
+        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher_background.png.flat",
+        "source": "D:\\ASProjects\\Nida\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_launcher_background.png"
     },
     {
-        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_nida_test.xml.flat",
-        "source": "D:\\ASProjects\\Nida\\app\\src\\main\\res\\layout\\activity_nida_test.xml"
+        "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher_background.png.flat",
+        "source": "D:\\ASProjects\\Nida\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_launcher_background.png"
     },
     {
         "merged": "D:\\ASProjects\\Nida\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
