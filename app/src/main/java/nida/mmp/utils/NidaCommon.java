@@ -8,11 +8,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.Settings;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -175,8 +177,6 @@ public class NidaCommon {
 
             methodOutputDialog(mainContext, String.valueOf(output));
 
-
-
             NidaLog.log("Invoked method " + methodName + "in class " + funClass);
 
         } catch (ClassNotFoundException e) {
@@ -243,15 +243,38 @@ public class NidaCommon {
      */
     public static String[] getClassesOfPackage(String packageName) {
         ArrayList<String> classes = new ArrayList<String>();
+
+        File[] customDexFiles = new File(NidaCommon.getCustomDexFilesPath()).listFiles();
+
         try {
             String packageCodePath = mainContext.getPackageCodePath();
-            DexFile df = new DexFile(packageCodePath);
-            for (Enumeration<String> iter = df.entries(); iter.hasMoreElements(); ) {
+
+            //Include app dex file
+            DexFile myDexFile = new DexFile(packageCodePath);
+            for (Enumeration<String> iter = myDexFile.entries(); iter.hasMoreElements(); ) {
+
                 String className = iter.nextElement();
+
                 if (className.contains(packageName)) {
                     classes.add(className);
                 }
             }
+
+            //Include custom dex files
+            if(customDexFiles != null){
+                for (int i = 0; i < customDexFiles.length; i++) {
+
+                    DexFile customDexFile = new DexFile(customDexFiles[i]);
+
+                    for (Enumeration<String> iter = customDexFile.entries(); iter.hasMoreElements(); ) {
+                        String className = iter.nextElement();
+                        if (className.contains(packageName)) {
+                            classes.add(className);
+                        }
+                    }
+                }
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -313,6 +336,14 @@ public class NidaCommon {
     public static String getLogFilePath(){
         ContextWrapper contextWrapper = new ContextWrapper(mainContext);
         return contextWrapper.getFilesDir().getAbsolutePath() + "/nida_log.txt";
+    }
+
+    /**
+     * Getting custom dex files path
+     */
+    public static String getCustomDexFilesPath(){
+        ContextWrapper contextWrapper = new ContextWrapper(mainContext);
+        return contextWrapper.getFilesDir().getAbsolutePath() + "/CustomDex/";
     }
 
     /**
