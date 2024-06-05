@@ -7,6 +7,49 @@
 
 
 
+## NIDA API
+
+### Додайте залежність у Gradle
+
+1. Завантажте актуальний .jar файл у [Releases] (https://github.com/Matrix-Username/Nida/releases)
+2. Підключіть залежність у Gradle `implementation(files("/your/path/nida.jar"))`
+
+### Проведіть розгортання Nida
+`NidaAPI.initialize(/*Your Context */getApplicationContext());`
+
+
+### Профілювання методів
+
+````
+ NidaAPI.profile(Toast.class.getDeclaredMethod("show"), new ProfileListener() {
+ @Override
+ public void onProfileComplete(ProfileData profileData) {
+ Log.i("NidaProfiler", profileData.toString());
+ }
+ });
+````
+
+у цьому прикладі ми профільуємо метод show у класі Toast, після виконання отримуємо ProfileData який містить
+
+- getExecutionTime()
+- getUsedMemory()
+- getMember()
+- getCurrentThread()
+
+### Відключення методів
+
+При використанні цього методу цiль перестає виконувати логіку
+
+`NidaAPI.disable(Toast.class.getDeclaredMethod("show"));`
+
+### Трасування методів
+
+`NidaAPI.trace(Toast.class.getDeclaredMethod("show"));`
+
+для перегляду трасувальних даних необхідно активувати UI панель (Активація панелі та що входить до трасувальних даних див. нижче)
+
+
+
 ***
 
 ## NEIP
