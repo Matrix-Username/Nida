@@ -11,7 +11,7 @@
 
 ### Додайте залежність у Gradle
 
-1. Завантажте актуальний .jar файл у [Releases] (https://github.com/Matrix-Username/Nida/releases)
+1. Завантажте актуальний .jar файл у [Releases](https://github.com/Matrix-Username/Nida/releases)
 2. Підключіть залежність у Gradle `implementation(files("/your/path/nida.jar"))`
 
 ### Проведіть розгортання Nida
