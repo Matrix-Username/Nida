@@ -46,6 +46,16 @@
 
 `NidaAPI.trace(Toast.class.getDeclaredMethod("show"));`
 
+### Активація панелі UI
+
+
+Application клас
+`NidaMain.startMyEngineFromApplication(this);`
+
+Activity клас
+`NidaMain.startMyEngine(this);`
+
+
 для перегляду трасувальних даних необхідно активувати UI панель (Активація панелі та що входить до трасувальних даних див. нижче)
 
 
