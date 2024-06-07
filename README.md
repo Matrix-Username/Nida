@@ -54,6 +54,8 @@
 Application клас
 `NidaMain.startMyEngineFromApplication(this);`
 
+або
+
 Activity клас
 `NidaMain.startMyEngine(this);`
 
