@@ -1,5 +1,6 @@
 # NIDA
-![20240323_213657 (1)](https://github.com/Matrix-Username/Nida/assets/59887239/9bfb3977-b9c6-47cc-b660-96de13ef0561)
+![1718225213536](https://github.com/Matrix-Username/Nida/assets/59887239/872cb3dc-1db5-417d-a684-e8d0bfe07daf)
+
 
 ### Nida - це легка та потужна бібліотека для пентесту та реверс-інжинірингу Android додатків прямо під час виконання
 
